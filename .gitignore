@@ -2,3 +2,4 @@ build/
 .idea/
 cmake-build-debug
 cmake_install.cmake
+docs/
