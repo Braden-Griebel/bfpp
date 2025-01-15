@@ -17,8 +17,11 @@ int main(int argc, char **argv) {
   std::optional<std::string> in_file;
   app.add_option(
          "file", in_file,
-         "Path to file to intepret, will read from stdin if not provided")
+         "Path to file to interpret, will read from stdin if not provided")
       ->check(CLI::ExistingFile);
+
+  // Parse the command line input
+  CLI11_PARSE(app, argc, argv);
 
   // Read in source from file if file argument passed, otherwise try stdin
   std::string input_string;
@@ -34,8 +37,6 @@ int main(int argc, char **argv) {
       input_string += file_buffer;
     }
   }
-
-  //std::cout<<input_string;
 
   // Create the parser
   auto bf_parser = Parser{input_string};
