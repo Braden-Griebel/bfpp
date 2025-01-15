@@ -1,6 +1,8 @@
+#pragma once
 #include <array>
 #include <cstddef>
 #include <iostream>
+#include <utility>
 #include <vector>
 
 #include "instructions.h"
@@ -27,10 +29,15 @@ class Interpreter {
 public:
   /*! @brief Construct a interpreter from a vector of instructions.
    */
-  Interpreter(std::vector<Instruction> instructions)
-      : instruction_vector(instructions), instruction_pointer(0),
-        data_pointer(0) {};
+  explicit Interpreter(std::vector<Instruction> instructions)
+      : data_array(), instruction_vector(std::move(instructions)),
+        data_pointer(0), instruction_pointer(0) {};
   /*! @brief Run the VM and interpret the brainfuck program.
    */
   void run();
+  // Functions intended mainly for testing
+  [[nodiscard]] int get_data_pointer() const {return this->data_pointer;};
+  [[nodiscard]] int get_instruction_pointer() const {return this->instruction_pointer;};
+  [[nodiscard]] unsigned char get_data_at(const int position) const{return (this->data_array).at(position);};
+
 };
