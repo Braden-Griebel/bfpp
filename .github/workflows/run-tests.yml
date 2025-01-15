@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4.2.2
       - name: Build
         run: |
-          cmake -S. -Bbuild -DBUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Release
+          cmake -S. -Bbuild -DBUILD_TESTING=ON -DCMAKE_BUILD_TYPE=Release
           cmake --build build
       - name: Test
         run: |
